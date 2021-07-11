@@ -10,7 +10,7 @@ def hello_world():
 
 
 @app.route("/credit", methods=["POST"])
-def sign_up():
+def resquest_credit():
     body = request.json
     admin = Order( 
                 name = body["name"],
