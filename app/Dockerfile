@@ -1,10 +1,10 @@
-FROM python:3.8-alpine
+FROM python:3.8-slim
 
 WORKDIR /docker-flask-api
 
 ADD . /docker-flask-api
 
-RUN apk add build-base
+# RUN apk add build-base
 
 RUN pip install -r requirements.txt
 
