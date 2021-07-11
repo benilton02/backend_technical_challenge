@@ -20,7 +20,7 @@ def resquest_credit():
 
     db.session.add(admin)
     db.session.commit()
-    return {"id": 0}
+    return "ok"
 
 
 @app.route("/credit", methods=["GET"])
