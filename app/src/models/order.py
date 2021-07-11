@@ -5,5 +5,6 @@ class Order(db.Model):
     name = db.Column(db.String(40), nullable=False)
     age = db.Column(db.Integer, nullable=False)
     credit = db.Column(db.Float, nullable=False)
+    status = db.Column(db.Boolean, nullable=True)
 
 db.create_all()
