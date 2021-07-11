@@ -1,2 +1,5 @@
-src/view/__pycache__/*
+app/__pycache__/
+app/src/__pycache__/
+app/src/models/__pycache__/
+
 myvenv/*
