@@ -6,7 +6,7 @@ from src.models.order import Order
 
 @app.route("/hello", methods=["GET"])
 def hello_world():
-    return "Hello World! POORRA"
+    return "Hello World!"
 
 
 @app.route("/credit", methods=["POST"])
