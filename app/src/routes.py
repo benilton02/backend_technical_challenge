@@ -1,8 +1,11 @@
 from config import app, db
 import requests, json
 from flask import request
-from src.models.order import Order
-import threading
+from src.models.order import (add_user,
+                              data_user, 
+                              show_all)
+
+
 
 @app.route("/hello", methods=["GET"])
 def hello_world():
@@ -12,50 +15,19 @@ def hello_world():
 @app.route("/credit", methods=["POST"])
 def resquest_credit():
     body = request.json
-
-   
-    admin = Order( 
-                name = body["name"],
-                age = body["age"],
-                credit = body["credit"] 
-            )
-    db.session.add(admin)
-    db.session.commit()
-
-    valid = threading.Thread(target=validation , args=(admin.id,))
-    valid.start()
-    
-    return (str(admin.id), 201)
-
-def validation(user_id):
-    user = db.session.query(Order).filter(Order.id == user_id).first()
-    if user.age > 18 and user.credit < 100000:
-        user.status = True
-    else:
-        user.status = False
-
-    db.session.add(user)
-    db.session.commit()
-    
+    admin = add_user(body)
+    return ({"ticket" : str(admin.id) }, 201)
 
 
 @app.route("/credit/<int:post_id>", methods=["GET"])
 def get(post_id):
-    user = db.session.query(Order).filter(Order.id == post_id).first()
+    user = data_user(post_id)
     if user.status is True:
         return "Approved"
     else:
         return "Denied"
 
 
-    # orders = Order.query.all()
-    # # data = []
-
-    # for order in orders:
-    #     data.append({
-    #         "name": order.name,
-    #         "age": order.age,
-    #         "credit": order.credit
-    #     })
-    # return (json.dumps(data), 200)
-
+@app.route("/all", methods=["GET"])
+def get_all():
+    return (json.dumps(show_all()), 200)
