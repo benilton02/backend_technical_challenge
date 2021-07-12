@@ -9,25 +9,34 @@ from src.models.order import (add_user,
 
 @app.route("/hello", methods=["GET"])
 def hello_world():
+    print("Hello World! ",  flush=True)
     return "Hello World!"
 
 
 @app.route("/credit", methods=["POST"])
 def resquest_credit():
     body = request.json
+    print(body,  flush=True)
     admin = add_user(body)
-    return ({"ticket" : str(admin.id) }, 201)
+    ticket = {"ticket" : str(admin.id) }
+    print(ticket, flush=True)
+    return ticket, 201
 
 
 @app.route("/credit/<int:post_id>", methods=["GET"])
 def get(post_id):
     user = data_user(post_id)
+    print({"ticket": post_id}, flush=True)
     if user.status is True:
-        return "Approved"
+        status = "Approved!"
     else:
-        return "Denied"
-
+        status = "Denied!"
+    print({"Credit" : status}, flush=True)
+    return status, 200
+    
 
 @app.route("/all", methods=["GET"])
 def get_all():
-    return (json.dumps(show_all()), 200)
+    all_users = show_all()
+    print(all_users, flush=True)
+    return (json.dumps(all_users), 200)
