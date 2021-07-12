@@ -7,6 +7,11 @@ from src.models.order import (add_user,
 
 
 
+@app.errorhandler(404)
+def not_found(e):
+    return "Page does not exist", 404
+
+
 @app.route("/hello", methods=["GET"])
 def hello_world():
     print("Hello World! ",  flush=True)
