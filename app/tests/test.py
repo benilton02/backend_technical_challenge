@@ -10,6 +10,7 @@ class TestApi(TestCase):
         self.hello = "/hello" 
         self.credit = "/credit"
         self.anything = "/anything"
+        self.all = "/all"
 
 
     def test_hello(self):
@@ -23,7 +24,6 @@ class TestApi(TestCase):
     
        
     def test_credit_approved(self):
-        """Credit approved. Age greater than 18 and credit less than 1.000.000,00 BRL"""        
         payload = {
             'name': 'Kakaroto', 
             'age': 24,   
@@ -156,6 +156,11 @@ class TestApi(TestCase):
         
         req_get = requests.get(self.server+ self.credit+ "/" + ticket)
         self.assertEqual(req_get.status_code, 200)
+
+
+    def test_show_all(self):
+        req = requests.get(self.server + self.all)
+        self.assertEqual(req.status_code, 200)
 
 def execute_all():        
     main()

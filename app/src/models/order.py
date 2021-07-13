@@ -9,7 +9,6 @@ class Order(db.Model):
     status = db.Column(db.Boolean, nullable=True)
 
 def add_user(body):
-    print(body)
     admin = Order( 
                 name = body["name"],
                 age = body["age"],
@@ -33,7 +32,6 @@ def validation(user_id):
     else:
         print({user.name : "Denied!"}, flush=True)
         user.status = False
-    print(f'status: {user.status}', flush=True)
     db.session.add(user)
     db.session.commit()
 
@@ -45,16 +43,17 @@ def show_all():
 
     for order in orders:
         data.append({
+            "ticket": order.id,
             "name": order.name,
             "age": order.age,
-            "credit": order.credit
+            "credit": order.credit,
+            "status": order.status
         })
-    print(data)
+    print(data, flush=True)
     return data
 
 def data_user(post_id):
     data =  db.session.query(Order).filter(Order.id == post_id).first()
-    print(data, flush=True)
     return data
 
 db.create_all()
