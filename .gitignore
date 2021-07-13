@@ -2,5 +2,6 @@ app/__pycache__/
 app/src/__pycache__/
 app/src/models/__pycache__/
 app/challenge.db
+app/tests/__pycache__
 
 myvenv/*
