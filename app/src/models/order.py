@@ -9,6 +9,7 @@ class Order(db.Model):
     status = db.Column(db.Boolean, nullable=True)
 
 def add_user(body):
+    print(body)
     admin = Order( 
                 name = body["name"],
                 age = body["age"],
@@ -25,16 +26,14 @@ def start_validation(admin):
     valid.start()
 
 def validation(user_id):
-    print({"validation": "start"}, flush=True)
     user = db.session.query(Order).filter(Order.id == user_id).first()
     if user.age > 18 and user.credit < 100000:
         user.status = True
-        print("Approved!", flush=True)
+        print({user.name : "Approved!"}, flush=True)
     else:
-        print("Denied!", flush=True)
+        print({user.name : "Denied!"}, flush=True)
         user.status = False
     print(f'status: {user.status}', flush=True)
-    print({"validation": "end"}, flush=True)
     db.session.add(user)
     db.session.commit()
 
@@ -50,6 +49,7 @@ def show_all():
             "age": order.age,
             "credit": order.credit
         })
+    print(data)
     return data
 
 def data_user(post_id):

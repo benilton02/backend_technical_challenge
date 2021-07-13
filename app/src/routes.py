@@ -23,23 +23,19 @@ def hello_world():
 @app.route("/credit", methods=["POST"])
 def resquest_credit():
     body = request.json
-    print(body,  flush=True)
     admin = add_user(body)
     ticket = {"ticket" : str(admin.id) }
-    print(ticket, flush=True)
     return ticket, 201
 
 
 @app.route("/credit/<int:post_id>", methods=["GET"])
 def get(post_id):
     user = data_user(post_id)
-    print({"ticket": post_id}, flush=True)
     if user is not None:
         if user.status is True:
             status = "Approved!"
         else:
             status = "Denied!"
-        print({"Credit" : status}, flush=True)
         return status, 200
     else:
         return "Page does not exist", 404
@@ -48,5 +44,4 @@ def get(post_id):
 @app.route("/all", methods=["GET"])
 def get_all():
     all_users = show_all()
-    print(all_users, flush=True)
     return (json.dumps(all_users), 200)
