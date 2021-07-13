@@ -27,7 +27,6 @@ def start_validation(admin):
 def validation(user_id):
     print({"validation": "start"}, flush=True)
     user = db.session.query(Order).filter(Order.id == user_id).first()
-    
     if user.age > 18 and user.credit < 100000:
         user.status = True
         print("Approved!", flush=True)
@@ -54,6 +53,8 @@ def show_all():
     return data
 
 def data_user(post_id):
-    return db.session.query(Order).filter(Order.id == post_id).first()
+    data =  db.session.query(Order).filter(Order.id == post_id).first()
+    print(data)
+    return data
 
 db.create_all()

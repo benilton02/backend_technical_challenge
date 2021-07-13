@@ -1,3 +1,4 @@
+from typing import NoReturn
 from config import app, db
 import requests, json
 from flask import request
@@ -32,12 +33,15 @@ def resquest_credit():
 def get(post_id):
     user = data_user(post_id)
     print({"ticket": post_id}, flush=True)
-    if user.status is True:
-        status = "Approved!"
+    if user is not None:
+        if user.status is True:
+            status = "Approved!"
+        else:
+            status = "Denied!"
+        print({"Credit" : status}, flush=True)
+        return status, 200
     else:
-        status = "Denied!"
-    print({"Credit" : status}, flush=True)
-    return status, 200
+        return "Page does not exist", 404
     
 
 @app.route("/all", methods=["GET"])
