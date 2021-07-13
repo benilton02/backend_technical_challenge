@@ -1,7 +1,11 @@
-## Deploy
+# Deploy (Linux)
      cd app/
      chmod 755 env.sh 
      ./env.sh
+
+# Testes (Linux)
+     cd app/
+     python3 run_tests.py
 
 
 # Teste Técnico Desenvolvedor Backend
