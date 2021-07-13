@@ -38,11 +38,11 @@ class TestApi(TestCase):
         self.assertEqual(req_get.status_code, 200)
 
     
-    def test_age_equal_eighteen_and_credit_equal_one_million(self):
+    def test_age_equal_eighteen_and_credit_equal_100000(self):
         payload = {
             'name': 'Bulma', 
             'age': 18,   
-            'credit':1000000
+            'credit':100000
         }
         req_post = requests.post(self.server + self.credit, json = payload)
         self.assertEqual(req_post.status_code, 201)
@@ -53,7 +53,7 @@ class TestApi(TestCase):
         self.assertEqual(req_get.status_code, 200)
 
     
-    def test_age_equal_eighteen_and_credit_less_one_million(self):
+    def test_age_equal_eighteen_and_credit_less_100000(self):
         payload = {
             'name': 'Freeza', 
             'age': 18,   
@@ -68,7 +68,7 @@ class TestApi(TestCase):
         self.assertEqual(req_get.status_code, 200)
 
     
-    def test_age_equal_eighteen_and_credit_greater_one_million(self):
+    def test_age_equal_eighteen_and_credit_greater_100000(self):
         payload = {
             'name': 'Trunks', 
             'age': 18,   
@@ -83,11 +83,11 @@ class TestApi(TestCase):
         self.assertEqual(req_get.status_code, 200)
 
     
-    def test_age_less_eighteen_and_credit_equal_one_million(self):
+    def test_age_less_eighteen_and_credit_equal_100000(self):
         payload = {
             'name': 'Gohan', 
             'age': 17,   
-            'credit': 1000000
+            'credit': 100000
         }
         req_post = requests.post(self.server + self.credit, json = payload)
         self.assertEqual(req_post.status_code, 201)
@@ -98,7 +98,7 @@ class TestApi(TestCase):
         self.assertEqual(req_get.status_code, 200)
 
     
-    def test_age_less_eighteen_and_credit_less_one_million(self):
+    def test_age_less_eighteen_and_credit_less_100000(self):
         payload = {
             'name': 'Gohan', 
             'age': 17,   
@@ -113,7 +113,7 @@ class TestApi(TestCase):
         self.assertEqual(req_get.status_code, 200)
 
     
-    def test_age_less_eighteen_and_credit_greater_one_million(self):
+    def test_age_less_eighteen_and_credit_greater_100000(self):
         payload = {
             'name': 'Gohan', 
             'age': 17,   
@@ -128,11 +128,11 @@ class TestApi(TestCase):
         self.assertEqual(req_get.status_code, 200)
 
     
-    def test_age_greater_eighteen_and_credit_equal_one_million(self):
+    def test_age_greater_eighteen_and_credit_equal_100000(self):
         payload = {
             'name': 'Gohan', 
             'age': 20,   
-            'credit': 1000000
+            'credit': 100000
         }
         req_post = requests.post(self.server + self.credit, json = payload)
         self.assertEqual(req_post.status_code, 201)
@@ -143,7 +143,7 @@ class TestApi(TestCase):
         self.assertEqual(req_get.status_code, 200)
 
     
-    def test_age_greater_eighteen_and_credit_greater_one_million(self):
+    def test_age_greater_eighteen_and_credit_greater_100000(self):
         payload = {
             'name': 'Gohan', 
             'age': 25,   
