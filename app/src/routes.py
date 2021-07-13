@@ -23,9 +23,13 @@ def hello_world():
 @app.route("/credit", methods=["POST"])
 def resquest_credit():
     body = request.json
-    admin = add_user(body)
-    ticket = {"ticket" : str(admin.id) }
-    return ticket, 201
+    if body['name'] is None or body['age'] is None or body['credit'] is None:
+        print(body, flush=True)
+        return "Incompleted data", 422
+    else:
+        admin = add_user(body)
+        ticket = {"ticket" : str(admin.id) }
+        return ticket, 201
 
 
 @app.route("/credit/<int:post_id>", methods=["GET"])
