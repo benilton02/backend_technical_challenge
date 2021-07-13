@@ -54,7 +54,7 @@ def show_all():
 
 def data_user(post_id):
     data =  db.session.query(Order).filter(Order.id == post_id).first()
-    print(data)
+    print(data, flush=True)
     return data
 
 db.create_all()

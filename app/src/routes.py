@@ -10,6 +10,7 @@ from src.models.order import (add_user,
 
 @app.errorhandler(404)
 def not_found(e):
+    print(e, flush=True)
     return "Page does not exist", 404
 
 
