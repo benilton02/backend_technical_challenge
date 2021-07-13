@@ -157,6 +157,37 @@ class TestApi(TestCase):
         req_get = requests.get(self.server+ self.credit+ "/" + ticket)
         self.assertEqual(req_get.status_code, 200)
 
+    
+    def test_name_is_none(self):
+        payload = {
+            'name': None, 
+            'age': 25,   
+            'credit': 5000
+        }
+        req_post = requests.post(self.server + self.credit, json = payload)
+        self.assertEqual(req_post.status_code, 422)
+
+
+    def test_age_is_none(self):
+        payload = {
+            'name': "Goten", 
+            'age': None,   
+            'credit': 5000
+        }
+        req_post = requests.post(self.server + self.credit, json = payload)
+        self.assertEqual(req_post.status_code, 422)
+    
+
+    def test_credit_is_none(self):
+        payload = {
+            'name': "Goten", 
+            'age': 25,   
+            'credit': None
+        }
+        req_post = requests.post(self.server + self.credit, json = payload)
+        self.assertEqual(req_post.status_code, 422)
+        
+
 
     def test_show_all(self):
         req = requests.get(self.server + self.all)
