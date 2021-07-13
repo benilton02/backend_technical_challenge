@@ -1,3 +1,9 @@
+## Deploy
+     cd app/
+     chmod 755 env.sh 
+     ./env.sh
+
+
 # Teste Técnico Desenvolvedor Backend
 
 O teste se baseia no desenvolvimento de um serviço que contenha uma API REST e um sistema de processamento assíncrono. Deverá conter as seguintes funcionalidades:
